@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>两栏布局</title>
+	<link rel="stylesheet" type="text/css" href="css/960_12_col.css">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/text.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <div id="toolbar-menu">
+    	<ul class="container_12">
+	    	<li><a href="#">登录</a></li>
+    		<li><a href="#">注册</a></li>
+    	</ul>
+    </div>
+	<div class="container_12">
+		<div id="header">
+			<div class="grid_2" id="header-left">
+				<img src="images/logo.png">
+				<ul>
+					<li><a href="#">主页</a></li>
+					<li><a href="#">摄影师</a></li>
+					<li><a href="#">新闻</a></li>
+					<li><a href="#">摄影作品</a></li>
+					<li><a href="#">联系我们</a></li>
+				</ul>
+			</div>
+			<div class="grid_2" id="header-right"></div>
+		</div>
+		<div id="mainbody" class="grid_8 alpha">
+			<!-- 子项目超出了mainbody的宽度，所以使用类alpha和类omega去掉第一个和最后一个子项目的左外边距和右外边距 -->
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras a pharetra purus. Suspendisse sed nisl lectus. Nulla tristique pulvinar turpis a tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse mattis urna sed libero scelerisque sit amet adipiscing libero elementum. In mattis cursus accumsan.</p>
+			<h2>最新作品</h2>
+			<hr style="border: none;border-top: 2px dotted #e1e1e1;">
+			<div class="grid_2 alpha" id="item1">
+				<img src="images/pic-1.jpg">
+				<h3><a href="#">Quiet Sunday</a></h3>
+				<p>laoreet placerat tortor risus quis lacus. Cras eget blandit justo. Etiam</p>
+			</div>
+			<div class="grid_2" id="item2">
+				<img src="images/pic-2.jpg">
+				<h3><a href="#">Fight</a></h3>
+				<p>Morbi in turpis risus, nec mattis mauris. Sed aliquet, urna ac vestibulum hendrerit,</p>
+			</div>
+			<div class="grid_2" id="item3">
+				<img src="images/pic-3.jpg">
+				<h3><a href="#">What?</a></h3>
+				<p>Sed dapibus libero eu felis fringilla in blandit lectus molestie. Integer cursus scelerisque orci, a dictum diam</p>
+			</div>
+			<div class="grid_2 omega" id="item4">
+				<img src="images/pic-4.jpg">
+				<h3><a href="#">Bridge</a></h3>
+				<p>Sed dapibus libero eu felis fringilla in blandit lectus molestie. Integer cursus scelerisque orci, a dictum diam</p>
+			</div>
+		</div>
+		<div id="sidebar" class="grid_4 omega">
+			<div id="block">
+				<h2>新闻</h2>
+				<hr style="width: 280px;border: none;border-top: 2px dotted #eee;margin: 0 auto">
+				<ul>
+					<li><a href="#">Praesent et risus velit,</a></li>
+					<li><a href="#">et adipiscing dui.</a></li>
+					<li><a href="#">Integer in sapien nisl.</a></li>
+					<li><a href="#">Aenean dictum magna eu</a></li>
+					<li><a href="#">lorem fringilla sagittis.</a></li>
+					<li><a href="#">Aenean quis nisl dolo</a></li>
+				</ul>
+			</div>
+			<img src="images/nikon-d4.jpg">
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="footer">
+		<div class="container_12">
+			<p class="grid_8">Copyright © 2012 I Love Photography. All rights reserved.</p>
+			<ul class="grid_2">
+				<li><a href="#">腾讯</a></li>
+				<li><a href="#">新浪微博</a></li>
+				<li><a href="#">优酷</a></li>
+			</ul>
+			<ul class="grid_2">
+				<li><a href="#">隐私</a></li>
+				<li><a href="#">使用条款</a></li>
+				<li><a href="#">免责声明</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

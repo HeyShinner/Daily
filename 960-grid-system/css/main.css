@@ -1,0 +1,103 @@
+#toolbar-menu {
+	height: 50px;
+	background-color: #000;
+}
+#toolbar-menu ul li {
+	list-style: none;
+	float: right;
+	padding-top: 15px;
+}
+#toolbar-menu ul li a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+#toolbar-menu ul li a:hover {
+	color: #22aaee;
+}
+#header {
+	clear: both;
+	height: 391px;
+	background-image: url(../images/header-bg.jpg);
+	margin-bottom: 20px;
+}
+#header #header-left ul {
+	margin-top: 30px;
+	margin-left: -20px;
+}
+#header #header-left ul li {
+	list-style: none;
+	margin-bottom: 15px;
+}
+#header #header-left ul li a {
+	text-decoration: none;
+	color: #fff;
+	font-size: 16px;
+	background-color: #000;
+	padding: 5px;
+}
+#header #header-left ul li a:hover {
+	background-color: #22aaee;
+}
+#mainbody {
+	height: 600px;
+	margin-bottom: 20px;
+	margin-right: 30px;
+}
+#mainbody p {
+	font-size: 16px;
+}
+#mainbody h3 {
+	padding: 10px 0;
+}
+#mainbody h3 a {
+	text-decoration: none;
+	color: #22aaee;
+	font-size: 20px;
+}
+#mainbody .grid_2 p {
+	font-size: 16px;
+}
+#sidebar {
+	margin-bottom: 20px;
+}
+#sidebar #block {
+	height: 280px;
+	border: 1px solid #eee;
+}
+#sidebar #block h2 {
+	margin: 20px 0 10px 20px;
+}
+#sidebar #block ul li {
+	padding: 5px 0;
+}
+#sidebar #block ul li a {
+	text-decoration: none;
+	color: #22aaee;
+	font-size: 16px;
+}
+#sidebar img {
+	margin-top: 40px;
+}
+#footer {
+	height: 100px;
+	background-color: #fff;
+	border-top: 2px solid #ccc;
+}
+#footer p {
+	font-size: 16px;
+	margin-top: 20px;
+}
+#footer ul {
+	margin-top: 20px;
+}
+#footer ul li a {
+	text-decoration: none;
+	color: #999;
+	font-size: 15px;
+}
+
+
+
+
+
