@@ -1,0 +1,107 @@
+/*
+*头部样式
+*/
+.header {
+	padding: 30px 0;
+}
+.header #search-input {
+	width: 204px;
+}
+/*
+*导航条样式
+*/
+#navigation {
+	border-bottom: 1px solid #d7d7d7;
+}
+
+#navigation li.active {
+	border-bottom: 3px solid #009571;
+}
+#navigation li a {
+	color: #777;
+}
+#navigation li a:hover {
+	color: #000;
+	background-color: #fff;
+}
+/*
+*缩略图样式
+*/
+.thumbnail-box .thumbnail {
+    padding: 0;
+}
+.thumbnail-box footer {
+	color: #777;
+	padding: 10px;
+}
+.thumbnail-box footer>button {
+	border: none;
+	background-color: #fff;
+	outline: none;
+}
+.thumbnail-box footer img {
+	width: 30px;
+}
+.thumbnail-box footer time,
+.thumbnail-box footer span {
+	padding: 0 5px;
+}
+.thumbnail-box footer .form-group .btn {
+	padding: 1px 3px;
+	background-color: #ddd;
+}
+/*
+*分页导航样式
+*/
+.breadcrumb {
+	background-color: #fff;
+	border-bottom: 1px solid #d7d7d7;
+}
+.pager li a,
+.breadcrumb li a {
+	color: #009571;
+}
+.icon-bow {
+	display: block;
+	width: 32px;
+	height: 21px;
+	background: #fff url(../images/bow.png) no-repeat 50% 50%;
+	margin: 0 auto;
+	margin-top: -30px;
+	padding: 0 25px;
+}
+/*
+*底部边栏样式
+*/
+.footer {
+	background: #009573 url(../images/emerald.png);
+}
+.semicircle {
+	background: url(../images/semicircle.png) repeat-x;
+	padding: 20px 0;
+}
+.semicircle .dashed-v {
+	background: url(../images/dashed-v.png) repeat-y 100% 0;
+}
+.semicircle .col-md-4 h3 {
+	font-size: 18px;
+	color: #075442;
+	text-shadow: 1px 1px 1px #03a67f;
+	background: url(../images/dashed-h.png) repeat-x 0 50%;
+}
+.semicircle .col-md-4 h3 span {
+	background: url(../images/emerald.png);
+	padding-right: 10px;
+}
+.semicircle .col-md-4 p {
+	color: #fff;
+	font-size: 16px;
+	padding: 0 20px 20px 0;
+}
+/*
+*页脚样式
+*/
+.copyright {
+	background: url(../images/emerald-footer.png);
+	padding: 30px 0 20px 0;
+}
