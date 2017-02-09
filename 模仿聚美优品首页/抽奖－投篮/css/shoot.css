@@ -1,0 +1,293 @@
+    body {
+        width: 100%;
+        height: 100vh;
+        background: url(../img/shoot-bg.png) no-repeat center center;
+        background-size: cover;
+        /*important!*/
+        overflow: hidden;
+    }
+    
+    .header-top {
+        height: 62px;
+        text-align: center;
+        padding: 10px 20px;
+    }
+    
+    .header-desc {
+        float: left;
+        height: 100%;
+        width: 30%;
+        background: url(../img/icon-gift1.png) no-repeat left 6px;
+        background-size: 13px;
+        line-height: 26px;
+        color: rgba(30, 189, 223, 0.8);
+        font-size: 9px;
+        padding-left: 19px;
+        text-align: left;
+    }
+    
+    .header-logo {
+        float: left;
+        width: 40%;
+        height: 100%;
+        background: url(../img/top-logo.png) no-repeat center top;
+        background-size: 25px auto;
+    }
+    
+    .header-logo img,
+    .header-sponsor img {
+        height: 50px;
+        width: auto;
+        display: none;
+    }
+    
+    .header-sponsor {
+        float: right;
+        height: 100%;
+        width: 30%;
+        text-align: right;
+        background: url(../img/top-equipment.png) no-repeat right top;
+        background-size: 41%;
+    }
+    
+    .shoot-area .rebounds {
+        position: relative;
+        height: 45%;
+    }
+    
+    .shoot-area .rebounds .tips {
+        width: 100%;
+        height: 150px;
+        margin: 15% 0 0 0;
+    }
+    
+    .rebounds .tips .countdown {
+        float: left;
+        width: 60%;
+        height: 100%;
+        padding: 15% 30px 0 0;
+        text-align: right;
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, .5);
+    }
+    
+    .tips .countdown #seconds {
+        font-size: 2rem;
+        margin: 0 10px;
+        color: #ff6d15;
+    }
+    
+    .rebounds .tips .announce {
+        float: right;
+        width: 40%;
+        height: 100%;
+        text-align: left;
+    }
+    
+    .shoot-area .rebounds .fixed-rod {
+        width: 100%;
+        height: 0.714rem;
+        background: url(../img/fixed-rod.png) no-repeat center center;
+        background-size: cover;
+    }
+    
+    .shoot-area .rebounds .basket {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
+        width: 3.071rem;
+        height: 4.179rem;
+        background: url(../img/basket.png) no-repeat center center;
+        background-size: cover;
+    }
+    
+    .dashboard .left {
+        float: left;
+        width: 65%;
+        position: relative;
+    }
+    
+    .dashboard .left .ball-box {
+        width: 2.214rem;
+        height: 2.214rem;
+    }
+    
+    .dashboard .left .ball {
+        width: 2rem;
+        height: 2rem;
+        margin-left: calc(50vw - 2rem / 2);
+        background: url(../img/ball.png) no-repeat center center;
+        background-size: cover;
+    }
+    
+    .dashboard .left .angle {
+        display: block;
+        position: absolute;
+        top: -45px;
+        left: calc(50vw - 6.5px / 2);
+        width: 6.5px;
+        height: 45.5px;
+        background: url(../img/angle.png) no-repeat center center;
+        background-size: cover;
+        display: none;
+    }
+    
+    .dashboard .left .angle.active {
+        display: block;
+    }
+    
+    .dashboard .left .range-bar {
+        position: relative;
+        width: 93%;
+        height: 25px;
+        margin: 10px auto;
+        background-color: rgba(0, 0, 0, .15);
+        border-radius: 12.5px;
+        border: 1px solid rgba(0, 0, 0, .3);
+        border-bottom: rgba(255, 255, 255, .8);
+        box-shadow: -10px 10px 10px rgba(0, 0, 0, .15) inset;
+    }
+    
+    .left .range-bar .range-handle {
+        position: absolute;
+        top: -9px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgb(176, 184, 182);
+    }
+    
+    .left .range-bar .range-handle:before {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: rgba(176, 184, 182, .4);
+        margin: -10px 0 0 -10px;
+    }
+    
+    .left .range-bar .range-handle:after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        display: block;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background-color: #ff6d15;
+    }
+    
+    .left .range-bar .range-quantity {
+        height: 15px;
+        margin: 4px 0 0 5px;
+        border-top-right-radius: 7.5px;
+        border-bottom-right-radius: 7.5px;
+        background: -webkit-linear-gradient(left, #ff4b06, #ff920f);
+    }
+    
+    .dashboard .right {
+        float: right;
+        width: 35%;
+    }
+    
+    .dashboard .shoot-btn .btn {
+        width: 93%;
+        text-align: center;
+        padding: 4px 0;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        line-height: 28px;
+        font-size: 14px;
+    }
+    
+    .dashboard .shoot-btn .btn-primary {
+        background: rgba(255, 255, 255, .3);
+        color: rgba(255, 255, 255, .4);
+    }
+    
+    .shoot-btn .btn-gold {
+        background: url('../img/btn-pay-bg.png') no-repeat center center;
+        background-size: cover;
+        color: #fff;
+    }
+    
+    .shoot-btn .btn-gold i {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background: url(../img/icon-beans.png) no-repeat center center;
+        background-size: cover;
+        vertical-align: -3px;
+    }
+
+    /*result*/
+    .result {
+        width: 60%;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, .15);
+        display: none;
+    }
+    
+    .result > h4 {
+        padding: 10px 0;
+        text-align: center;
+        color: rgba(255, 255, 255, .8);
+    }
+    
+    .result > img {
+        width: 20%;
+        height: auto;
+        padding: 5px 0;
+        margin: 0 40%;
+    }
+    
+    .result > p {
+        color: #ff6d15;
+        font-size: 12px;
+        text-align: center;
+        padding: 10px 0;
+    }
+    
+    @media screen and (min-width: 320px) {
+        html {
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (min-width: 360px) {
+        html {
+            font-size: 16px;
+        }
+    }
+    
+    @media screen and (min-width: 400px) {
+        html {
+            font-size: 18px;
+        }
+    }
+    
+    @media screen and (min-width: 440px) {
+        html {
+            font-size: 20px;
+        }
+    }
+    
+    @media screen and (min-width: 480px) {
+        html {
+            font-size: 22px;
+        }
+    }
+    
+    @media screen and (min-width: 640px) {
+        html {
+            font-size: 28px;
+        }
+    }

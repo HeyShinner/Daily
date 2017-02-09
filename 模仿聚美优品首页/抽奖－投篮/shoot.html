@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <title>哔哩哔哩篮球</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/powerange.min.css">
+    <link rel="stylesheet" href="./css/shoot.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-desc">礼品介绍</div>
+            <div class="header-logo"></div>
+            <div class="header-sponsor"></div>
+        </div>
+    </header>
+
+    <section>
+        <div class="shoot-area">
+            <!--固定杆和篮框部分-->
+            <div class="rebounds">
+                <div class="fixed-rod"></div>
+                <div id="basket" class="basket"></div>
+                <div class="tips">
+                    <div class="countdown"></div>
+                    <div class="announce"></div>
+                </div>
+            </div>
+            <!--滑动条和游戏按钮部分-->
+            <div class="dashboard clearfix">
+                <!--篮球和滑动条-->
+                <div class="left">
+                    <span id="angle" class="angle"></span>
+                    <div class="ball-box">
+                        <div id="ball" class="ball"></div>
+                    </div>
+                    <input id="slider" type="text" />
+                </div>
+                <!--游戏按钮-->
+                <div class="right shoot-btn">
+                    <div class="btn btn-primary" data-times="0" data-type="101">免费一次</div>
+                    <div class="btn btn-gold" data-times="0" data-type="201"><i></i>100 一次</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="result" class="result">
+        <!--<h4 id="title">运气不错喔！</h4>
+        <img id="gift-img" src="img/ticket.png" alt="">
+        <p id="gift-name">球票</p>-->
+    </div>
+
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/powerange.js"></script>
+    <script type="text/javascript" src="./js/jquery.parabola.js"></script>
+    <script type="text/javascript" src="./js/shoot.js"></script>
+</body>
+
+</html>

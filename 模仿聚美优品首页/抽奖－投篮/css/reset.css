@@ -1,0 +1,105 @@
+@charset "utf-8";
+body,
+ol,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+dl,
+dd,
+form,
+fieldset,
+legend,
+input,
+textarea,
+select {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-size: 16px;
+    font-family: "黑体", Helvetica Neue, Helvetica, Arial, sans-serif, serif;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+em {
+    font-style: normal
+}
+
+li {
+    list-style: none
+}
+
+img {
+    border: 0;
+    vertical-align: middle
+}
+
+i,
+b {
+    font-style: normal;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+p {
+    word-wrap: break-word
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    /* Firefox */
+    -webkit-box-sizing: border-box;
+    /* Safari */
+}
+
+* {
+    /*去掉点击链接背景色*/
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    -webkit-touch-callout: none;
+    /*去掉长按复制粘贴*/
+    -webkit-user-select: none;
+    /*webkit浏览器*/
+    -khtml-user-select: none;
+    /*早期浏览器*/
+    -moz-user-select: none;
+    /*火狐*/
+    -ms-user-select: none;
+    /*IE10*/
+    user-select: none;
+}
+
+input {
+    -webkit-user-select: auto;
+    /*webkit浏览器*/
+}
+
+
+/*清除浮动*/
+
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    zoom: 1;
+}
