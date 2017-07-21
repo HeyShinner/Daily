@@ -1,0 +1,529 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.live-event {
+    position: relative;
+    width: 100%;
+    background: url(./img/live-event-bg.png) no-repeat; 
+    background-size: 100%;
+}
+
+/*---------------------------------match-info--------------------------------*/
+.match-info {
+    width: 100%;
+    padding: 0.53rem 0 0 0;
+    background: url(./img/match-info-bg.png) no-repeat;
+    background-size: 100%;
+    font-size: 0;
+}
+.match-info .match-info-item  {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: top;
+}
+.match-info .match-info-team {
+    width: 33.5%; 
+    height: 2.6rem; 
+    line-height: 2.6rem;
+    font-size: 0.75rem;
+    color: #fff;
+    text-align: center;
+}
+.match-info .match-info-rate {
+    width: 33%;
+    height: 2.6rem;
+    line-height: 2.6rem;
+    font-size: 0;
+    text-align: center;
+}
+.match-info-rate .rate-item {
+    display: inline-block;
+    color: #f8b551;
+    font-size: 2.25rem;
+}
+.match-info-rate .rate-item.rate-mid {
+    width: 20%;
+    text-align: center;
+}
+.match-info-rate .rate-item.rate-home {
+    width: 40%;
+    text-align: right;
+}
+.match-info-rate .rate-item.rate-away {
+    width: 40%;
+    text-align: left;
+}
+.match-info .match-info-team  img {
+    min-width: 1.2125rem;
+    height: 0.75rem;
+    display: inline-block;
+    vertical-align: middle; 
+}
+.match-info .match-info-team .team-name {
+    display: inline-block;
+    vertical-align: middle; 
+}
+.match-time {
+    width: 25%;
+    height: 1.875rem; 
+    line-height: 1.875rem;
+    font-size: 0;
+    margin: 0 auto;
+}
+.match-time .match-time-left {
+    width: 60%;
+    display: inline-block;
+    color: #8c8c8c;
+    font-size: 0.6875rem;
+    text-align: center;
+    background: url(./img/icon-time.png) no-repeat;
+    background-size: 0.75rem;
+    background-position: left center; 
+}
+.match-time .match-time-right {
+    width: 40%;
+    display: inline-block;
+    color: #8c8c8c;
+    font-size: 0.6875rem;
+    text-align: left;
+}
+
+/*---------------------------------foo-court--------------------------------*/
+.live-event .foo-court {
+    position: absolute;
+    top: 19.6%;
+    left: 7.07%;
+    width: 85.86%;
+}
+.foo-court .football {
+    position: absolute;
+    width: .3125rem;
+    height: .3125rem;
+    border-radius: 50%;
+    z-index: 999;
+    background-color: #fff;
+    display: none;
+}
+.foo-court .outer {
+    position: absolute;
+    width: 0.75rem;
+    height: 0.3125rem;
+    border-radius: 50%;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, .2);
+    display: none;
+}
+.foo-court .outer .inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    background-color: #dbdbdb;
+}
+.live-event .anim-football {
+    position: absolute;
+    top: 38%;
+    left: calc(50% - 1.7657rem);
+    width: 3.5313rem;
+    height: 3.7188rem;
+    background: url(./img/anim-ball.png) no-repeat;
+    background-size: 100%;
+    z-index: 999;
+    display: none;
+}
+.ball-anim {
+    animation: bigThenSmall 800ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-animation: bigThenSmall 800ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /*使其保留动画最后一帧的位置*/
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes bigThenSmall {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    30% {
+            transform: scale(1.2);
+        -webkit-transform: scale(1.5);
+    }
+    100% {
+            transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+.ball-smaller {
+    animation: smaller 600ms linear;
+    -webkit-animation: smaller 600ms linear;
+    /*使其保留动画最后一帧的位置*/
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes smaller {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    100% {
+            transform: scale(.2);
+        -webkit-transform: scale(.2);
+    }
+}
+.foo-court .icon-player {
+    position: absolute;
+    display: block;
+    width: 1.8125rem;
+    height: 1.4375rem;
+    background: url("./img/icon-player.png") no-repeat;
+    background-size: 100%;
+    display: none;
+}
+.foo-court .icon-flag {
+    position: absolute;
+    display: block;
+    width: 1.157rem;
+    height: 1.157rem;
+    background: url("./img/icon-flag.png") no-repeat;
+    background-size: 100%;
+    display: none; 
+}
+.foo-court .icon-position,
+.foo-court .icon-hurt {
+    position: absolute;
+    display: block;
+    width: 0.875rem;
+    height: 1.6875rem;
+    display: none;
+}
+.foo-court .icon-position {
+    background: url("./img/icon-position.png") no-repeat;
+    background-size: 100%;
+}
+.foo-court .icon-hurt {
+    background: url("./img/icon-hurt.png") no-repeat;
+    background-size: 100%;
+}
+
+/*---------------------------------event-msg--------------------------------*/
+.live-event .event-msg {
+    position: absolute;
+    top: 24.2%;
+    width: 7.5rem;
+    height: 2.6875rem;
+    z-index: 999;
+    display: none; 
+}
+/* home ar away postion */
+.live-event .event-msg.home {
+    right: 50%;
+}
+.live-event .event-msg.away {
+    left: 50%;
+}
+.live-event .event-msg .event-msg-player {
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    width: 100%;
+    height: 60%;
+    background-color: #dbdbd9;
+    color: #585857;
+    font-size: 0.625rem;
+    padding: 0 0.3125rem;
+    box-sizing: border-box;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.live-event .event-msg .event-msg-player .logo {
+    width: 0.91rem;
+    margin: 0 0 0 0.3125rem;
+}
+.live-event .event-msg .event-msg-tip {
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+    -webkit-box-align: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    width: 100%;
+    height: 40%;
+    background-color: #343434;
+    color: #fff;
+    font-size: 0.5625rem;
+    padding: 0 0.3125rem;
+    box-sizing: border-box;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+/*---------------------------------anim-foo-score--------------------------------*/
+.live-event .anim-foo-score {
+    position: absolute;
+    top: 25.14%;
+    left: 32.5%;
+    width: 35%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    background: url(./img/text-bg.png) no-repeat;
+    background-position: center center;
+    background-size: 100% 95%;
+    z-index: 999;
+    display: none;
+}
+/*特效-“球进了！”和“比赛开始”*/
+.text-anim {
+    animation: easeinoutback 600ms cubic-bezier(0.68, -0.55, 0.265, 2.55);
+    -webkit-animation: easeinoutback 600ms cubic-bezier(0.68, -0.55, 0.265, 2.55);
+    /*使其保留动画最后一帧的位置*/
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes easeinoutback {
+    0% {
+        left: 0;
+        transform: skewX(0);
+        -webkit-transform: skewX(0);
+        opacity: 0;
+    }
+    50% {
+        transform: skew(-45deg);
+        -webkit-transform: skew(-45deg);
+    }
+    100% {
+        left: 35%;
+        transform: skew(0);
+        -webkit-transform: skew(0);
+        opacity: 1;
+    }
+
+}
+
+/*---------------------------------黄换红牌动画--------------------------------*/
+.anim-match-card {
+    position: absolute;
+    top: 31.57%;
+    left: 31%;
+    width: 38%;
+    height: 20%;
+    z-index: 999;
+    font-size: 0;
+    display: none;
+}
+.anim-match-card .match-item {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: inline-block;
+}
+.anim-match-card .match-item.left {
+    width: 31%;
+    left: 63%;
+    background: url(./img/yellow-card.png) no-repeat;
+    background-size: 3rem;
+    background-position: center center;
+    opacity: 0; 
+    display: none; 
+}
+.anim-match-card .match-item.mid {
+    width: 16%;
+    left: 42%;
+    background: url(./img/arrow.png) no-repeat;
+    background-size: 1.5rem;
+    background-position: center center;
+    opacity: 0; 
+    display: none; 
+}
+.anim-match-card .match-item.right {
+    width: 25%;
+    left: 12%;
+    background: url(./img/red-card.png) no-repeat;
+    background-size: 2.35rem;
+    background-position: center center;
+    opacity: 0;
+    display: none;
+}
+.anim-match-card .left.left-anim {
+    display: block;
+    animation: leftAnim 1200ms linear;
+    -webkit-animation: leftAnim 1200ms linear;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes leftAnim {
+    0% {
+        opacity: 0;
+        left: 34.5%;
+    }
+    33% {
+        opacity: 1;
+        left: 6%;
+    }
+    66% {
+        opacity: 1;
+        left: 6%;
+    }
+    100% {
+        opacity: 1;
+        left: 6%;
+    }
+}
+.anim-match-card .mid.mid-anim {
+    display: block;
+    animation: midShow 400ms linear 400ms;
+    -webkit-animation: midShow 400ms linear 400ms;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes midShow {
+    0% {
+        opacity: 0;
+        left: 42%;
+    }
+    100% {
+        opacity: 1;
+        left: 42%;
+    }
+}
+.anim-match-card .right.right-anim {
+    display: block;
+    animation: rightShow 400ms linear 800ms;
+    -webkit-animation: rightShow 400ms linear 800ms;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes rightShow {
+    0% {
+        opacity: 0;
+        left: 63%;
+    }
+    100% {
+        opacity: 1;
+        left: 63%;
+    }
+}
+
+/*---------------------------------进球灯光和礼花--------------------------------*/
+.anim-light {
+    position: absolute;
+    top: 21%;
+    width: 100%;
+    height: 53%;
+    background: url(./img/anim-light.png) no-repeat;
+    background-size: 100% 43.5%;
+    display: none;
+}
+.anim-light .anim-light-gift {
+    width: 100%;
+    height: 100%;
+    background: url(./img/gif.gif) no-repeat;
+    background-size: 100%;
+}
+
+/*---------------------------------球员替换卡片提示--------------------------------*/
+.event-replace {
+    position: absolute;
+    top: 24.2%;
+    left: 31%;
+    width: 42%;
+    height: 6rem;
+    display: none;
+}
+.event-replace .up,
+.event-replace .down {
+    width: 100%;
+    height: 53%;
+}
+.event-replace .up {
+    background: url("./img/arrow-green.png") no-repeat;
+    background-size: 2.90rem 2.90rem;
+    background-position: right center;
+}
+.event-replace .down {
+    background: url("./img/arrow-red.png") no-repeat;
+    background-size: 2.90rem 2.90rem;
+    background-position: left top;
+}
+.event-replace .event-replace-msg {
+    width: 70%;
+    height: 100%;
+    border-collapse: separate; 
+    border-radius: 3px;
+}
+.event-replace .down .event-replace-msg {
+    margin-top: -3%;
+    margin-left: 30%;
+}
+.event-replace .event-replace-msg .player {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 55%;
+    background-color: #dbdbd9;
+    color: #585857;
+    font-size: 0.625rem;
+    padding: 0 0.3125rem;
+    box-sizing: border-box;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.event-replace .event-replace-msg .tip {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 45%;
+    background-color: #343434;
+    color: #fff;
+    font-size: 0.5625rem;
+    padding: 0 0.3125rem;
+    box-sizing: border-box;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.event-replace .event-replace-msg .tip .logo {
+    width: 0.91rem;
+    margin: 0 0.3125rem 0 0;
+}
+
+/*---------------------------------字体--------------------------------*/
+@media screen and (min-width: 320px) {
+    html {font-size: 14px;}
+}
+
+@media screen and (min-width: 360px) {
+    html {font-size: 16px;}
+}
+
+@media screen and (min-width: 400px) {
+    html {font-size: 16px;}
+}
+
+@media screen and (min-width: 440px) {
+    html {font-size: 16px;}
+}
+
+@media screen and (min-width: 480px) {
+    html {font-size: 22px;}
+}
+
+@media screen and (min-width: 640px) {
+    html {font-size: 28px;}
+}
