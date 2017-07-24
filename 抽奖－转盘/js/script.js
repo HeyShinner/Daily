@@ -1,16 +1,6 @@
 $(document).ready(function() {
     var count = 1,
         rotateStatus = "stop",//转动状态
-        // rewardObj = {//各奖品对应角度，以初始位置为准
-        //     "thanks": 106,
-        //     "packets5": 325,
-        //     "shoes": 38,
-        //     "packets20": 75,
-        //     "tickets": 300,
-        //     "gold": 220,
-        //     "shirts": 180,
-        //     "milk": 150
-        // };
         rewardArr = [];
 
     //计算各个奖品的角度
@@ -33,10 +23,8 @@ $(document).ready(function() {
                 newRotateTime;
             //点击先让转盘转起来，再向后端请求
             $(".wheel").css({
+                "transform": "rotate(" + (360 * count * 5) + "deg)",
                 "transition": "transform " + rotateTime + "s " + "cubic-bezier(0,0,0.25,1)"
-            });
-            $(".wheel").css({
-                "transform": "rotate(" + (360 * count * 5) + "deg)"
             });
             //跑马灯开始
             $(".horse-race-lamp > span").each(function(index , element) {
@@ -44,15 +32,12 @@ $(document).ready(function() {
             });
             //模拟请求数据
             setTimeout(function() {
-                // deg = rewardObj["thanks"];
                 deg = rewardArr[Math.floor(Math.random() * 8)];
 
                 newRotateTime = (360 * count * 5 + deg) * rotateTime / (360 * count * 5);
                 $(".wheel").css({
+                    "transform": "rotate(" + (360 * count * 5 + deg) + "deg)",
                     "transition": "transform " + newRotateTime + "s " + "cubic-bezier(0,0,0.25,1)"
-                });
-                $(".wheel").css({
-                    "transform": "rotate(" + (360 * count * 5 + deg) + "deg)"
                 });
                 count += 1;
             } , 500);
@@ -62,7 +47,7 @@ $(document).ready(function() {
                 $(".horse-race-lamp > span").each(function(index , element) {
                     $(element).removeClass("light");
                 });
-            } , rotateTime * 1000);
+            } ,rotateTime * 1000);
         }
     });
     //滚动公告
@@ -84,7 +69,7 @@ $(document).ready(function() {
     function scrollUp() {
         if (area.scrollTop % scrollHeight == 0) {
             clearInterval(scrollTimer);
-		    setTimeout(startScroll,delay);
+		    setTimeout(startScroll, delay);
 		} else {
 			area.scrollTop ++;
 			if (area.scrollTop >= area.scrollHeight / 2 - 8) {
