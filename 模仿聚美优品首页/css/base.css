@@ -486,7 +486,7 @@ body {
 	height: 550px;
 }
 .top-tab-content {
-	width: 1113px;
+	width: 1090px;
 	height: 550px;
 	margin: 0 auto;
 	position: relative;
@@ -497,6 +497,7 @@ body {
 	top: 0;
 	left: 0;
 	display: none;
+	font-size: 0;
 }
 .top-tab-itembox.current {
 	display: block;
@@ -510,6 +511,9 @@ body {
 }
 .top-tab-itembox a:hover {
 	opacity: 0.8;
+}
+.top-tab-itembox a:nth-child(2n) {
+	margin-right: 0;
 }
 /*
 *reason
