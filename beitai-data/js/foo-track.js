@@ -44,8 +44,6 @@
          * 绘制轨迹
          */
         draw: function(x, y) {
-            var ops = this.options;
-
             //元素模拟动画开始特效
             if (i === 0.1) {
                 $("#ellipse").show().css({"left": x - $("#ellipse").width() / 2 + "px", "top": y - $("#ellipse").height() / 2 + "px"});
@@ -131,8 +129,8 @@
          * 依照贝赛尔曲线轨迹移动目标元素
          */
         moveTarget: function(x, y) {
-            var ops = this.options,
-                ball = $(ops.targetEle);
+            var ball = $(this.options.targetEle);
+
             ball.show();
             ball.css({"left": x - ball.width() / 2 + "px", "top": y - ball.height() / 2 + "px"});
         },
@@ -140,20 +138,10 @@
          * 停止动画
          */
         stop: function() {
-            clearTimeout(this.delayHide);
-            var ops = this.options,
-                ball = $(ops.targetEle);    
             if (!!this.timer) {
                 clearInterval(this.timer);
             }
-            this.delayHide = setTimeout(function() {
-                ball.fadeOut();
-                $("#ellipse").fadeOut();
-                ctx.clearRect(0, 0, fooCanvas.width, fooCanvas.height);
-                i = 0;
-                $("#common-msg").fadeOut();
-                $(ops.startIcon).fadeOut();
-            }, 2000);
+            i = 0;
         }
     };
     var defaultSetting = {

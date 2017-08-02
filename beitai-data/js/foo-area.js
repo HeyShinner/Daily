@@ -4,19 +4,7 @@
     };
 
     var p3 = 0,//绘制三角形区域铺开动画帧增量
-        p4 = 0,//绘制四边形区域铺开动画帧增量
-        storagePos = [0, 0];
-
-    //主客队里任意球和球门球的两个固定点的百分比位置
-    var renLeft1 = [ 9, 31 ],
-        renLeft2 = [ 9, 62 ],
-        renRight1 = [ 91, 31 ],
-        renRight2 = [ 91, 62 ];
-    
-    var qiuLeft1 = [ 0, 0 ],
-        qiuLeft2 = [ 0, 100 ],
-        qiuRight1 = [ 100, 0 ],
-        qiuRight2 = [ 100, 100 ];
+        p4 = 0;//绘制四边形区域铺开动画帧增量
 
     FOOAREA.prototype = {
         constructor: FOOAREA,
@@ -27,27 +15,10 @@
             var ops = this.getOptions(options);
             this.options = ops;
 
-            this.reset();
             //将后端回传的动画起止坐标转化
-            storagePos = ops.pos;
-            ops.pos = STATSFOO.posConvert(ops.pos);
+            this.pos = STATSFOO.posConvert(ops.pos);
 
             ops.type === 3 ? this.drawAngleArea() : this.drawQuadArea();
-        },
-        /**
-         * 重置
-         */
-        reset: function() {
-            clearTimeout(this.delayTimerAngle);
-            clearTimeout(this.delayTimerQuad);
-            $(this.options.startIcon).hide();
-        },
-        /**
-         * 停止
-         */
-        stop: function() {
-            $(this.options.startIcon).fadeOut();
-            ctx.clearRect(0, 0, fooCanvas.width, fooCanvas.height);
         },
         /**
          * 获取配置
@@ -68,50 +39,82 @@
                 ops = this.options;
 
             $(ops.startIcon).fadeIn().css({
-                "left": ops.pos[0] - $(ops.startIcon).width() / 2,
-                "top": ops.pos[1] - $(ops.startIcon).height() * (1 - 0.1)
+                "left": this.pos[0] - $(ops.startIcon).width() / 2,
+                "top": this.pos[1] - $(ops.startIcon).height() * (1 - 0.1)
             });
             
             this.angleTimer = setInterval(function() {
                 ctx.clearRect(0, 0, fooCanvas.width, fooCanvas.height);
-                self.angleStep(self, renRight1, renRight2);//根据需求要替换“左边右边足球场地固定点”的坐标值，又挖坑给自己跳！！！
+                self.angleStep(self, ops.end["up"], ops.end["down"]);//根据需求要替换“左边右边足球场地固定点”的坐标值，又挖坑给自己跳！！！
             }, 10);
         },
         angleStep: function(obj, targetA, targetB) {
             var ops = obj.options,
-                referPos = STATSFOO.posConvert( [targetA[0], storagePos[1]] ),
                 fixedA = STATSFOO.posConvert(targetA, "stay"),//因为循环改变了pos[1]的值，所以需要传入"stay"提示函数只可转化一次pos[1]原始值
                 fixedB = STATSFOO.posConvert(targetB, "stay"),
-                xposUp = fixedA[0] - ops.pos[0],
-                yposUp = fixedA[1] - ops.pos[1],
-                xposDown = fixedB[0] - ops.pos[0],
-                yposDown = fixedB[1] - ops.pos[1],
+                upLength = this.getDistance(this.pos, fixedA),
+                downLength = this.getDistance(this.pos, fixedB);
 
-                upLength = Math.sqrt(xposUp * xposUp + yposUp * yposUp),
-                downLength = Math.sqrt(xposDown * xposDown + yposDown * yposDown),
-                sideUpLength = xieLength * storagePos[1] / 100 * (targetB[1] - targetA[1]) / 100,//又挖坑给自己跳
-                sideDownLength = xieLength * (100 - storagePos[1]) / 100 * (targetB[1] - targetA[1]) / 100,//又挖坑给自己跳
-                baseLength = (ops.pos[0] - referPos[0]),
+            var resultPos = this.getPerStepPos(fixedA, fixedB, targetA, targetB, this.pos, p3, upLength, downLength);
 
+            fixedA = resultPos.fixedA;
+            fixedB = resultPos.fixedB;
+
+            ctx.beginPath();
+            ctx.moveTo(this.pos[0], this.pos[1]);
+            ctx.lineTo(fixedA[0], fixedA[1]);
+            ctx.lineTo(fixedB[0], fixedB[1]);
+            ctx.closePath();
+
+            var colorGra = ctx.createLinearGradient(fixedA[0], fixedA[1], this.pos[0], this.pos[1]);
+            colorGra.addColorStop(0, "rgba(255, 255, 255, .1)");
+            colorGra.addColorStop(1, "rgba(255, 255, 255, .8)");
+            ctx.fillStyle = colorGra;
+            ctx.fill();
+
+            p3 += 1;
+
+            if (p3 > ops.part) {
+                clearInterval(obj.angleTimer);
+                p3 = 0;
+            }
+        },
+        /**
+         * 求每一帧动画位置坐标
+         */
+        getPerStepPos: function(A, B, targetA, targetB, C, increm, upLength, downLength) {//fixedA, fixedB, targetA, targetB, this.pos, p3, upLength, downLength
+            var ops = this.options,
+                dire = C[0] > A[0] ? -1 : 1,
+                sideUpLength = 0,
+                sideDownLength = 0,
+                referPos = [ targetA[0], ops.pos[1] ],
+                // xieUpL = xieLength / 2 * (51 / 62),
+                // xieDownL = xieLength / 2 * (73 / 62),
+                baseLength = dire * ( STATSFOO.posConvert( referPos )[0] - C[0] ),
                 up = upLength / ops.part,//三角形区域上面一条边增量
                 down = downLength / ops.part;//三角形区域下面一条边增量
 
-            var cos = (upLength * upLength + downLength * downLength - xieLength * xieLength) / (2 * downLength * upLength),
-                sin = Math.sqrt(1 - cos * cos);
+            if (C[1] > A[1] && C[1] < B[1]) {
+                //this.pos的y在A B两点之间
+                // if (ops.pos[1] < targetA) {
+                    sideUpLength = xieLength * (ops.pos[1] - targetA[1]) / 100;
+                    sideDownLength = xieLength * (targetB[1] - ops.pos[1]) / 100;
+                // } else {
+                    // sideUpLength = this.getDistance(STATSFOO.posConvert(referPos), A);
+                    // sideDownLength = this.getDistance(STATSFOO.posConvert(referPos), B);
+                // }
 
-            if (storagePos[1] === 0) {
-                fixedA[0] = ops.pos[0] - up * p3;
-                fixedA[1] = ops.pos[1];
+                // if ( C[1] >= STATSFOO.posConvert([0, 50])[1] ) {
+                //     sideUpLength = xieUpL * (50 - targetA[1]) / 50 + xieDownL * (ops.pos[1] - 50) / 50;
+                //     sideDownLength = xieDownL * (targetB[1] - ops.pos[1]) / 50;
+                //     // console.log(sideUpLength);
+                // } else {
+                //     sideUpLength = xieUpL * (ops.pos[1] - targetA[1]) / 50;
+                //     sideDownLength = xieDownL * (targetB[1] - 50) / 50 + xieUpL * (50 - ops.pos[1]) / 50;
+                //     console.log(sideUpLength);
+                //     console.log(ops.pos[1] - targetA[1]);
+                // }
 
-                fixedB[0] = ops.pos[0] - down * cos * p3;
-                fixedB[1] = ops.pos[1] + down * sin * p3;
-            } else if (storagePos[1] === 100) {
-                fixedA[0] = ops.pos[0] - up * cos * p3;
-                fixedA[1] = ops.pos[1] - up * sin * p3;
-
-                fixedB[0] = ops.pos[0] - down * p3;
-                fixedB[1] = ops.pos[1];
-            } else {
                 //fixedA and fixedB都需要根据角度来转化坐标
                 var cosSideUp = (upLength * upLength + baseLength * baseLength - sideUpLength * sideUpLength) / (2 * baseLength * upLength),
                     cosSideDown = (downLength * downLength + baseLength * baseLength - sideDownLength * sideDownLength) / (2 * baseLength * downLength),
@@ -123,34 +126,103 @@
                     downX = down * cosSideDown,
                     downY = down * sinSideDown;
 
-                fixedA[0] = ops.pos[0] - upX * p3;
-                fixedA[1] = ops.pos[1] - upY * p3;
+                A[0] = C[0] + dire * upX * increm;
+                A[1] = C[1] - upY * increm;
 
-                fixedB[0] = ops.pos[0] - downX * p3;
-                fixedB[1] = ops.pos[1] + downY * p3;
+                B[0] = C[0] + dire * downX * increm;
+                B[1] = C[1] + downY * increm;
+            } else if (C[1] < A[1]) {
+                //this.pos在A点上方
+                sideUpLength = xieLength * (targetA[1] - ops.pos[1]) / 100;
+                sideDownLength = xieLength * (targetB[1] - ops.pos[1]) / 100;
+
+                //fixedA and fixedB都需要根据角度来转化坐标
+                var cosSideUp = (upLength * upLength + baseLength * baseLength - sideUpLength * sideUpLength) / (2 * baseLength * upLength),
+                    cosSideDown = (downLength * downLength + baseLength * baseLength - sideDownLength * sideDownLength) / (2 * baseLength * downLength),
+                    sinSideUp = Math.sqrt(1 - cosSideUp * cosSideUp),
+                    sinSideDown = Math.sqrt(1 - cosSideDown * cosSideDown);
+
+                var upX = up * cosSideUp,
+                    upY = up * sinSideUp,
+                    downX = down * cosSideDown,
+                    downY = down * sinSideDown;
+
+                A[0] = C[0] + dire * upX * increm;
+                A[1] = C[1] + upY * increm;
+
+                B[0] = C[0] + dire * downX * increm;
+                B[1] = C[1] + downY * increm;
+            } else if (C[1] > B[1]) {
+                //this.pos在B点下方
+                sideUpLength = xieLength * (ops.pos[1] - targetA[1]) / 100;
+                sideDownLength = xieLength * (ops.pos[1] - targetB[1] ) / 100;
+
+                //fixedA and fixedB都需要根据角度来转化坐标
+                var cosSideUp = (upLength * upLength + baseLength * baseLength - sideUpLength * sideUpLength) / (2 * baseLength * upLength),
+                    cosSideDown = (downLength * downLength + baseLength * baseLength - sideDownLength * sideDownLength) / (2 * baseLength * downLength),
+                    sinSideUp = Math.sqrt(1 - cosSideUp * cosSideUp),
+                    sinSideDown = Math.sqrt(1 - cosSideDown * cosSideDown);
+
+                var upX = up * cosSideUp,
+                    upY = up * sinSideUp,
+                    downX = down * cosSideDown,
+                    downY = down * sinSideDown;
+
+                A[0] = C[0] + dire * upX * increm;
+                A[1] = C[1] - upY * increm;
+
+                B[0] = C[0] + dire * downX * increm;
+                B[1] = C[1] - downY * increm;
+            } else if (C[1] === A[1]) {
+                sideDownLength = xieLength * (targetB[1] - targetA[1]) / 100;
+
+                console.log(targetA);
+                console.log(targetB);
+
+                // console.log(sideDownLength);
+
+                //fixedA and fixedB都需要根据角度来转化坐标
+                var cosSideDown = (downLength * downLength + baseLength * baseLength - sideDownLength * sideDownLength) / (2 * baseLength * downLength),
+                    sinSideDown = Math.sqrt(1 - cosSideDown * cosSideDown);
+
+                var downX = down * cosSideDown,
+                    downY = down * sinSideDown;
+
+                A[0] = C[0] + dire * up * increm;
+                A[1] = C[1];
+
+                B[0] = C[0] + dire * downX + increm;
+                B[1] = C[1] + downY * increm;
+            } else {
+                sideUpLength = xieLength * (targetB[1] - targetA[1]) / 100;
+
+                //fixedA and fixedB都需要根据角度来转化坐标
+                var cosSideUp = (upLength * upLength + baseLength * baseLength - sideUpLength * sideUpLength) / (2 * baseLength * upLength),
+                    sinSideUp = Math.sqrt(1 - cosSideUp * cosSideUp);
+
+                var upX = up * cosSideUp,
+                    upY = up * sinSideUp;
+
+                A[0] = C[0] + dire * upX * increm;
+                A[1] = C[1] - upY * increm;
+
+                B[0] = C[0] + dire * down * increm;
+                B[1] = C[1];
             }
-            ctx.beginPath();
-            ctx.moveTo(ops.pos[0], ops.pos[1]);
-            ctx.lineTo(fixedA[0], fixedA[1]);
-            ctx.lineTo(fixedB[0], fixedB[1]);
-            ctx.closePath();
 
-            var colorGra = ctx.createLinearGradient(fixedA[0], fixedA[1], ops.pos[0], ops.pos[1]);
-            colorGra.addColorStop(0, "rgba(255, 255, 255, .1)");
-            colorGra.addColorStop(1, "rgba(255, 255, 255, .8)");
-            ctx.fillStyle = colorGra;
-            ctx.fill();
+            return {
+                "fixedA": A,
+                "fixedB": B
+            };
+        },
+        /**
+         * 两点之间距离
+         */
+        getDistance: function(pos1, pos2) {
+            var x = pos1[0] - pos2[0],
+                y = pos1[1] - pos2[1];
 
-            p3 += 1;
-
-            if (p3 > ops.part) {
-                clearInterval(obj.angleTimer);
-                p3 = 0;
-
-                this.delayTimerAngle = setTimeout(function() {
-                    obj.stop();
-                }, 2000);
-            }
+            return Math.sqrt(x * x + y * y);
         },
         /**
          * 绘制虚线区域
@@ -193,13 +265,15 @@
         },
         quadStep: function(obj) {
             var ops = obj.options,
-                fixedA = ops.dire === "left" ? STATSFOO.posConvert( [0, 0] ) : STATSFOO.posConvert( [100, 0] ),
-                fixedB = ops.dire === "left" ? STATSFOO.posConvert( [0, 100] ) : STATSFOO.posConvert( [100, 100] ),
-                fixedC = ops.dire === "left" ? STATSFOO.posConvert( [ops.percent, 100] ) : STATSFOO.posConvert( [100 - ops.percent, 100] ),
-                fixedD = ops.dire === "left" ? STATSFOO.posConvert( [ops.percent, 0] ) : STATSFOO.posConvert( [100 - ops.percent, 0] ),
-                dire = ops.dire === "left" ? 1 : -1,
-                up = (fixedD[0] - fixedA[0]) * dire / ops.part,
-                down = (fixedC[0] - fixedB[0]) * dire / ops.part;
+                fixedA = ops.dire === "left" ? STATSFOO.posConvert( [100, 0] ) : STATSFOO.posConvert( [0, 0] ),
+                fixedB = ops.dire === "left" ? STATSFOO.posConvert( [100, 100] ) : STATSFOO.posConvert( [0, 100] ),
+                fixedC = STATSFOO.posConvert( [ops.percent, 100] ),
+                fixedD = STATSFOO.posConvert( [ops.percent, 0] ),
+                dire = ops.dire === "left" ? -1 : 1,
+                upAll = STATSFOO.posConvert( [100, 0] )[0] - STATSFOO.posConvert( [0, 0] )[0],
+                downAll = STATSFOO.posConvert( [100, 100] )[0] - STATSFOO.posConvert( [0, 100] )[0],
+                up = ops.dire === "left" ? (100 - ops.percent) / 100 * upAll / ops.part : ops.percent / 100 * upAll / ops.part,
+                down = ops.dire === "left" ? (100 - ops.percent) / 100 * downAll / ops.part : ops.percent / 100 * downAll / ops.part;
 
             ctx.beginPath();
             ctx.moveTo(fixedA[0] + up * p4 * dire, fixedA[1]);
@@ -207,6 +281,7 @@
             ctx.lineTo(fixedB[0], fixedB[1]);
             ctx.lineTo(fixedA[0], fixedA[1]);
             ctx.closePath();
+
 
             var colorGra = ctx.createLinearGradient(fixedA[0], fixedA[1], fixedD[0], fixedD[1]);
             colorGra.addColorStop(0, "rgba(255, 255, 255, .2)");
@@ -223,10 +298,6 @@
                 ctx.beginPath();
                 this.DrawDashedLine(ctx, fixedD[0], fixedD[1], fixedC[0], fixedC[1], 5);
                 ctx.closePath();
-
-                this.delayTimerQuad = setTimeout(function() {
-                    obj.stop();
-                }, 2000);
             }
         }
     };
@@ -241,6 +312,7 @@
         percent: "",
         //三角形需要的坐标
         pos: [0, 0],
+        end: {},
         startIcon: null
     };
 

@@ -3,7 +3,7 @@
         this.initialize(options);
     };
 
-    var i = 0;
+    var i = 0;//增量
 
     FOOSCORE.prototype = {
         constructor: FOOSCORE,
@@ -13,7 +13,7 @@
         initialize: function(options) {
             var ops = this.getOptions(options),
                 self = this,
-                ball = $("#anim-football")
+                ball = $(ops.targetEle);
 
             this.options = ops;
             this.reset();
@@ -25,7 +25,6 @@
             this.controlY = this.start[1] < this.end[1] ? this.start[1] - 40 : this.end[1] - 40;
 
             this.delayTimer = setTimeout(function() {
-                $(ops.targetEle).addClass("ball-smaller");
                 $("#anim-light-gift").hide();
                 self.animTimer = setInterval(function() {
                     self.animBallStep(self);
@@ -36,35 +35,28 @@
          * 重置动画
          */
         reset: function() {
-            var ops = this.options;
-
-            $(ops.targetEle).show();
+            $(this.options.targetEle).show();
             $("#anim-foo-score").show().addClass("text-anim");
-            $("#anim-light").show().find("#anim-light-gift").show();
-            $("#common-msg").hide();
+            $("#anim-light").show().find("#anim-light-gift").show().removeClass("gift-anim").addClass("gift-anim");
         },
         /**
          * 动画结束
          */
         stop: function() {
-            clearTimeout(this.hideTimer);
-            
-            var ops = this.options,
-                ball = $("#anim-football");
+            var ball = $(this.options.targetEle);
 
-            $(ops.targetEle).hide().css({
-                "left": this.start[0] - ball.width() / 2 + "px",
-                "top": this.start[1] - ball.height() / 2 + "px"
-            }).removeClass("ball-smaller");
+            ball.hide().css({
+                // "left": this.start[0] - ball.width() / 2 + "px",
+                // "top": this.start[1] - ball.height() / 2 + "px"
+                "top": fooCanvas.height * 0.20 + "px",
+                "left": (fooCanvas.width - ball.width()) / 2 + "px"
+            });
+
+            console.log(this.start);
+
             $("#anim-foo-score").hide().removeClass("text-anim");
             $("#common-msg").show();
 
-            this.hideTimer = setTimeout(function() {
-                $("#anim-light").fadeOut();
-                $("#common-msg").fadeOut();
-            }, 3000);
-
-            clearTimeout(this.delayTimer);
             clearInterval(this.animTimer);
         },
         /**
@@ -82,7 +74,7 @@
          */
         animBallStep: function(obj) {
             var ops = obj.options,
-                ball = $("#anim-football");
+                ball = $(ops.targetEle);
             //起始点到控制点x和y每次的增量
             var changeX1 = (obj.controlX - obj.start[0]) / ops.part,
                 changeY1 = (obj.controlY - obj.start[1]) / ops.part;
@@ -103,11 +95,11 @@
             if (i >= ops.part) {
                 obj.stop();
                 i = 0;
-                ballShootAnim("player");
+                STATSFOO.ballShootAnim("player", ops.end, ops.shootEndPos);
                 //important!!!
                 return;
             }
-            $(ops.targetEle).css({
+            ball.css({
                 "left": bx - ball.width() / 2 + "px",
                 "top": by - ball.height() / 2 + "px"
             });
@@ -117,6 +109,7 @@
     var defaultSetting = {
         //动画终点
         end: [0, 0],
+        shootEndPos: [0, 0],
         part: 8,
         //动画目标元素
         targetEle: null

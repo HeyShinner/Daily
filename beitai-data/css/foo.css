@@ -6,7 +6,7 @@ body {
 .live-event {
     position: relative;
     width: 100%;
-    background: url(./img/live-event-bg.png) no-repeat; 
+    background: url(../img/live-event-bg.png) no-repeat; 
     background-size: 100%;
 }
 
@@ -14,7 +14,7 @@ body {
 .match-info {
     width: 96.73%;
     margin: 0 auto;
-    background: url(./img/match-info-bg2.png) no-repeat;
+    background: url(../img/match-info-bg.png) no-repeat;
     background-size: 100%;
     font-size: 0;
 }
@@ -81,7 +81,7 @@ body {
     padding-left: 0.75rem;
     color: #8c8c8c;
     font-size: 0.6875rem;
-    background: url(./img/icon-time.png) no-repeat;
+    background: url(../img/icon-time-live.png) no-repeat;
     background-size: 0.75rem;
     background-position: left center;
 }
@@ -132,11 +132,11 @@ body {
 }
 .live-event .anim-football {
     position: absolute;
-    top: 38%;
+    top: 20%;
     left: calc(50% - 1.7657rem);
     width: 3.5313rem;
     height: 3.7188rem;
-    background: url(./img/anim-ball.png) no-repeat;
+    background: url(../img/anim-ball.png) no-repeat;
     background-size: 100%;
     z-index: 999;
     display: none;
@@ -162,7 +162,7 @@ body {
         transform: scale(1);
         -webkit-transform: scale(1);
     }
-    59% {
+    55% {
         transform: scale(1);
         -webkit-transform: scale(1);
     }
@@ -176,7 +176,7 @@ body {
     display: block;
     width: 1.8125rem;
     height: 1.4375rem;
-    background: url("./img/icon-player.png") no-repeat;
+    background: url("../img/icon-player.png") no-repeat;
     background-size: 100%;
     display: none;
 }
@@ -185,7 +185,7 @@ body {
     display: block;
     width: 1.157rem;
     height: 1.157rem;
-    background: url("./img/icon-flag.png") no-repeat;
+    background: url("../img/icon-flag.png") no-repeat;
     background-size: 100%;
     display: none; 
 }
@@ -198,11 +198,11 @@ body {
     display: none;
 }
 .foo-court .icon-position {
-    background: url("./img/icon-position.png") no-repeat;
+    background: url("../img/icon-position.png") no-repeat;
     background-size: 100%;
 }
 .foo-court .icon-hurt {
-    background: url("./img/icon-hurt.png") no-repeat;
+    background: url("../img/icon-hurt.png") no-repeat;
     background-size: 100%;
 }
 
@@ -213,7 +213,26 @@ body {
     width: 7.5rem;
     height: 2.6875rem;
     z-index: 999;
-    display: none; 
+    display: none;
+}
+.live-event .event-msg.msg-anim {
+    animation: msgAnim 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-animation: msgAnim 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /*使其保留动画最后一帧的位置*/
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes msgAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(-30%);
+        -webkit-transform: translateY(-30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+    }
 }
 /* 定义事件信息框位置类名 */
 .live-event .event-msg.home {
@@ -279,17 +298,17 @@ body {
     height: 0.62rem;
 }
 .live-event .event-msg .event-msg-tip .icon-card.yellow-card {
-    background: url("./img/icon-yellow-card.png") no-repeat;
+    background: url("../img/icon-yellow-card.png") no-repeat;
     background-size: 100%;
 }
 .live-event .event-msg .event-msg-tip .icon-card.red-card {
-    background: url("./img/icon-red-card.png") no-repeat;
+    background: url("../img/icon-red-card.png") no-repeat;
     background-size: 100%;
 }
 .live-event .event-msg .event-msg-tip .icon-ball-smaller {
     width: 0.9rem;
     height: 0.9rem;
-    background: url("./img/icon-ball-smaller.png") no-repeat;
+    background: url("../img/icon-ball-smaller.png") no-repeat;
     background-size: cover;
     margin-right: 0.4375rem;
 }
@@ -307,7 +326,7 @@ body {
     text-align: center;
     font-size: 1.5rem;
     color: #fff;
-    background: url(./img/text-bg.png) no-repeat;
+    background: url(../img/text-bg.png) no-repeat;
     background-position: center center;
     background-size: 100% 80%;
     z-index: 999;
@@ -350,7 +369,7 @@ body {
     text-align: center;
     font-size: 1.5rem;
     color: #fff;
-    background: url(./img/text-bg.png) no-repeat;
+    background: url(../img/text-bg.png) no-repeat;
     background-position: center center;
     background-size: 100% 80%;
     z-index: 999;
@@ -377,7 +396,7 @@ body {
 .anim-match-card .match-item.left {
     width: 31%;
     left: 63%;
-    background: url(./img/yellow-card.png) no-repeat;
+    background: url(../img/yellow-card.png) no-repeat;
     background-size: 3rem;
     background-position: center center;
     opacity: 0; 
@@ -386,7 +405,7 @@ body {
 .anim-match-card .match-item.mid {
     width: 16%;
     left: 42%;
-    background: url(./img/arrow.png) no-repeat;
+    background: url(../img/arrow.png) no-repeat;
     background-size: 1.5rem;
     background-position: center center;
     opacity: 0; 
@@ -395,7 +414,7 @@ body {
 .anim-match-card .match-item.right {
     width: 25%;
     left: 12%;
-    background: url(./img/red-card.png) no-repeat;
+    background: url(../img/red-card.png) no-repeat;
     background-size: 2.35rem;
     background-position: center center;
     opacity: 0;
@@ -468,7 +487,7 @@ body {
     top: 21%;
     width: 100%;
     height: 44%;
-    background: url(./img/anim-light.png) no-repeat;
+    background: url(../img/anim-light.png) no-repeat;
     background-size: 100% 43.5%;
     display: none;
     overflow: hidden;
@@ -476,7 +495,7 @@ body {
 .anim-light .anim-light-gift {
     width: 100%;
     height: 100%; 
-    background: url(./img/gif.gif) no-repeat;
+    background: url(../img/gif.gif) no-repeat;
     background-size: 100%;
 }
 /* 定义进球事件礼花动画类名 */
@@ -514,12 +533,12 @@ body {
     opacity: 0;
 }
 .event-replace .up {
-    background: url("./img/arrow-green.png") no-repeat;
+    background: url("../img/arrow-green-live.png") no-repeat;
     background-size: 2.90rem 2.90rem;
     background-position: right center;
 }
 .event-replace .down {
-    background: url("./img/arrow-red.png") no-repeat;
+    background: url("../img/arrow-red-live.png") no-repeat;
     background-size: 2.90rem 2.90rem;
     background-position: left top;
 }
@@ -575,19 +594,19 @@ body {
         opacity: 0;
         transform: translate(0, 0);
         -webkit-transform: translate(0, 0);
-        background-image: url("./img/arrow-green.png");
+        background-image: url("../img/arrow-green-live.png");
     }
     25% {
         opacity: 1;
         transform: translate(0, 0);
         -webkit-transform: translate(0, 0);
-        background-image: url("./img/arrow-green.png");
+        background-image: url("../img/arrow-green-live.png");
     }
     50% {
         opacity: 1;
         transform: translate(0, 0);
         -webkit-transform: translate(0, 0);
-        background-image: url("./img/arrow-green.png");
+        background-image: url("../img/arrow-green-live.png");
     }
     100% {
         opacity: 1;
@@ -607,13 +626,13 @@ body {
         opacity: 0;
         transform: translate(0, 0);
         -webkit-transform: translate(0, 0);
-        background-image: url("./img/arrow-red.png");
+        background-image: url("../img/arrow-red-live.png");
     }
     50% {
         opacity: 1;
         transform: translate(0, 0);
         -webkit-transform: translate(0, 0);
-        background-image: url("./img/arrow-red.png");
+        background-image: url("../img/arrow-red-live.png");
     }
     100% {
         opacity: 1;
@@ -654,4 +673,12 @@ body {
 
 @media screen and (min-width: 600px) {
     html {font-size: 28px;}
+}
+
+@media screen and (min-width: 640px) {
+    html {font-size: 30px;}
+}
+
+@media screen and (min-width: 680px) {
+    html {font-size: 32px;}
 }

@@ -2,242 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>自有数据产品</title>
+    <title>竞猜</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <link rel="stylesheet" href="foo.css">
+    <link rel="stylesheet" href="./css/foo.css">
 </head>
 <body>
     <section class="live-event" id="live-event">
-        <div class="match-info">
-            <div class="match-info-item match-info-team match-home">
-                <img src="img/home.png" alt="">
-                <div class="team-name">巴拿马</div>
-            </div>
-            <div class="match-info-item match-info-rate">
-                <div class="rate-item rate-home">1</div>
-                <div class="rate-item rate-mid">:</div>
-                <div class="rate-item rate-away">2</div>
-            </div>
-            <div class="match-info-item match-info-team match-away">
-                <div class="team-name">洪都拉斯</div>
-                <img src="img/away.png" alt="">
-            </div>
+        <div class="space" style="width: 100%;height: 0.5rem;"></div>
+		<div class="match-info" id ="live-match-info">
+			<div class="match-info-item match-info-team match-home">
+				<img src="" alt="">
+				<div class="team-name"></div>
+			</div>
+			<div class="match-info-item match-info-rate">
+				<div class="rate-item rate-home"></div>
+				<div class="rate-item rate-mid"></div>
+				<div class="rate-item rate-away"></div>
+			</div>
+			<div class="match-info-item match-info-team match-away">
+				<div class="team-name"></div>
+				<img src="" alt="">
+			</div>
 
-            <div class="match-time">
-                <div class="match-time-left">73:36</div>
-                <div class="match-time-right">下半场</div>
-            </div>
-        </div>
-        <div class="foo-court" id="foo-court">
-            <!--画布-->
-            <canvas class="foo-canvas" id="foo-canvas"></canvas> 
+			<div class="match-time" id="live-match-time">
+				<div class="match-time-left"></div>
+				<div class="match-time-right"></div>
+			</div>
+		</div>
+		<div class="foo-court" id="foo-court">
+			<!--画布-->
+			<canvas class="foo-canvas" id="foo-canvas"></canvas> 
+			<!--轨迹足球-->
+			<div class="football hide-all" id="football"></div> 
+			<!--重叠椭圆-->
+			<div class="outer hide-all" id="ellipse">
+				<div class="inner"></div>
+			</div>
+			<!--⚽️-->
+			<div class="anim-football ball-anim hide-all" id="anim-football"></div>
+			<!--icons-->
+			<em id="icon-player" class="icon-player hide-all"></em>
+			<em id="icon-flag" class="icon-flag hide-all"></em>
+			<em id="icon-none" class="icon-none hide-all"></em><!--用于界外球时不显示icon-->
+			<em id="icon-position" class="icon-position hide-all"></em>
+			<em id="icon-hurt" class="icon-hurt hide-all"></em>
+		</div>
+		<!--赛事提示框-->
+		<div class="event-msg home hide-all msg-anim" id="common-msg">
+			<div class="event-msg-player" id="msg-player"><img src="img/team-logo.png" alt="" class="logo"></div>
+			<div class="event-msg-tip"></div>
+		</div>
 
-            <!--以下需要坐标位置，需在foo-court盒子中-->
-            <!--足球-->
-            <div class="football" id="football"></div> 
-            <!--重叠椭圆-->
-            <div class="outer" id="ellipse">
-                <div class="inner"></div>
-            </div>
-            <!--特效:球进了-->
-            <div class="anim-football ball-anim" id="anim-football"></div>
+		<div class="anim-foo-score text-anim" id="anim-foo-score">球进了!</div>
 
-            <em id="icon-player" class="icon-player"></em>
-            <em id="icon-flag" class="icon-flag"></em>
-            <em id="icon-position" class="icon-position"></em>
-            <em id="icon-hurt" class="icon-hurt"></em>
-        </div>
-        <!--赛事提示框-->
-        <div class="event-msg home" id="common-msg">
-            <div class="event-msg-player" id="msg-player">哈梅斯.罗德里格斯<img src="img/team-logo.png" alt="" class="logo"></div>
-            <div class="event-msg-tip">受伤 35'</div>
-        </div>
+		<div class="anim-match-text text-anim hide-all" id="anim-match-text"></div>
 
-        <div class="anim-foo-score text-anim" id="anim-foo-score">球进了!</div>
+		<!--黄换红-->
+		<div class="anim-match-card card-anim hide-all" id="anim-match-card">
+			<div id="right" class="match-item right"></div>
+			<div id="mid" class="match-item mid"></div>
+			<div id="left" class="match-item left"></div>
+		</div>
+		<!--灯光、礼花效果-->
+		<div class="anim-light hide-all" id="anim-light">
+			<div class="anim-light-gift gift-anim" id="anim-light-gift"></div> 
+		</div>
+		<!--球员替换：类up指换下球员-->
+		<div class="event-replace hide-all" id="event-replace">
+			<div class="up">
+				<div class="event-replace-msg" id="up-msg">
+					<div class="player"></div>
+					<div class="tip"><img src="" alt="" class="logo"></div>
+				</div>
+			</div>
 
-        <div class="anim-match-start" id="anim-match-start">比赛开始</div>
-
-        <!--黄换红-->
-        <div class="anim-match-card" id="anim-match-card">
-            <div id="right" class="match-item right"></div>
-            <div id="mid" class="match-item mid"></div>
-            <div id="left" class="match-item left"></div>
-        </div>
-        <!--球进了：灯光和礼花效果-->
-        <div class="anim-light" id="anim-light">
-            <div class="anim-light-gift" id="anim-light-gift"></div> 
-        </div>
-        <!--球员替换-->
-         <div class="event-replace" id="event-replace">
-            <div class="up">
-                <div class="event-replace-msg">
-                    <div class="player">哈梅斯.罗德里格斯</div>
-                    <div class="tip"><img src="img/team-logo.png" alt="" class="logo">换上球员 54'</div>
-                </div>
-            </div>
-
-            <div class="down">
-                <div class="event-replace-msg">
-                    <div class="player">罗德里格斯</div>
-                    <div class="tip"><img src="img/team-logo.png" alt="" class="logo">换下球员 54'</div>
-                </div>
-            </div>
-        </div>
+			<div class="down">
+				<div class="event-replace-msg" id="down-msg">
+					<div class="player"></div>
+					<div class="tip"><img src="" alt="" class="logo"></div>
+				</div>
+			</div>
+		</div>
     </section>
-    <div class="start" id="start">开始动画</div>
 </body>
 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
-<script>
-    var STATSFOO = {},
-        fooCanvas = document.querySelector("#foo-canvas"),
-        fooCourt = $("#foo-court"),
-        liveEvent = $("#live-event"),
-        WINDOW_W = $(document).width(),
-        LIVE_BG_RATIO = 681 / 750,//live-event背景图高度和宽度百分比
-        LIVE_COURT_RATIO = 135 / 706,//足球场地背景图高度和宽度百分比
-        A_H_RATIO = (255 - 10) / 681,//足球场地背景图高度与live-event背景图高度百分比
-        xieLength = 0,
-        LIVE_COURT_W_RATIO = 0.8586,//足球场地背景图占屏幕宽度百分比
-        ctx = fooCanvas.getContext("2d");
-    
-    (function($) {
-        LIVE_BG_H = WINDOW_W * LIVE_BG_RATIO;
-        liveEvent.height(LIVE_BG_H);
-
-        fooCanvas.width = WINDOW_W * LIVE_COURT_W_RATIO;
-        fooCanvas.height = LIVE_BG_H / 2.5;
-
-        fooCourt.css({
-            "top": ( LIVE_BG_H - (LIVE_BG_H * A_H_RATIO + fooCourt.height()) ) / LIVE_BG_H * 100 + "%"
-        });
-
-        //start：以6P下足球背景图宽高为缩放尺寸基础
-        var courtW = WINDOW_W * LIVE_COURT_W_RATIO,
-            courtH = courtW * LIVE_COURT_RATIO;
-        
-        var sinNum = Math.sin(Math.atan(124 / 108)),//梯形背景图底部角的正余弦值
-            cosNum = Math.cos(Math.atan(124 / 108));
-
-        xieLength = courtH / Math.sin(Math.atan(126 / 107));
-
-        STATSFOO.posConvert = function(pos, status) {
-            //实际显示在canvas上的坐标为正常坐标，注意百分比的计算跟100挂钩
-            var posOnCanvas = [0, 0],
-                w = courtW - xieLength * cosNum * 2,//梯形背景图顶边长
-                a = xieLength * (100 - pos[1]) * cosNum / 100;//斜边到y轴距离
-
-            //由于缩放视角问题，0%到50%并不代表背景图上足球场地的0%到50%！！！又一个坑！！！
-            pos[1] = pos[1] <= 50 && pos[1] > 0 ? pos[1] * 51 / 62 : pos[1];
-
-            if (pos[1] === 100) {
-                posOnCanvas[0] = fooCanvas.width * pos[0] / 100;
-                posOnCanvas[1] = fooCanvas.height;
-            } else {
-                posOnCanvas[0] = pos[0] >= 50 ? ( (xieLength * cosNum - a) * 2 + w ) * pos[0] / 100 + a : pos[0] * w / 100 + a;
-                posOnCanvas[1] = fooCanvas.height - xieLength * (100 - pos[1]) * sinNum / 100;
-            }
-            //由于铺开动画中需要循环调用该函数，所以需要保证pos[1]只能转化一次，又一个坑！！！
-            pos[1] = status === "stay" && pos[1] <= 50 && pos[1] > 0 ? pos[1] * 62 / 51 : pos[1];
-
-            return posOnCanvas;
-        }
-    })(jQuery);
-</script>
+<script type="text/javascript" src="./js/foo.config.js"></script>
 <script type="text/javascript" src="./js/foo-track.js"></script>
 <script type="text/javascript" src="./js/foo-area.js"></script>
 <script type="text/javascript" src="./js/foo-score.js"></script>
-<script>
-    // 足球射门动画
-    function ballShootAnim(iconIdStr) {
-        $("#common-msg").fadeIn();
-        var fooShootPath = new FOOSHOOTPATH({
-            targetEle: "#football",
-            start: [40, 50],
-            end: [0, 50],
-            part: 6,
-            startIcon: "#icon-" + iconIdStr,
-            status: iconIdStr
-        });
-    }
-    // 球门球、任意球、越位铺开动画
-    function ballSpreadAnim(typeNum, iconIdStr) {
-        var fooArea = new FOOAREA({
-            canvas: "#foo-canvas",
-            dire: "left",//控制“越位”铺开动画方向，与球门球和任意球主客方向无关
-            type: typeNum,//3对应icon-position;4对应icon-flag
-            percent: 40,
-            pos: [50, 50],//球门球动画的起始位置:left[18, 50],right[85, 50]
-            part: 50,
-            startIcon: iconIdStr
-        });
-    }
-    // 进球动画
-    function ballScoreAnim() {
-        var fooScore = new FOOSCORE({
-            end: [40, 60],
-            part: 8,
-            targetEle: "#anim-football"
-        });
-    }
-    // 黄换红牌动画
-    function cardAnimStart() {
-        clearTimeout(delayTimer);
-        $("#anim-match-card").css({"opacity": 1, "display": "block"}).find("#left").addClass("left-anim").end().find("#mid").addClass("mid-anim").end().find("#right").addClass("right-anim");
-        var delayTimer = setTimeout(function() {
-            $("#anim-match-card").animate({
-                opacity: 0
-            }, 600, function() {
-                $("#anim-match-card").hide().find("#left").removeClass("left-anim").end().find("#mid").removeClass("mid-anim").end().find("#right").removeClass("right-anim");
-            });
-        }, 3000);
-    }
-    //球员受伤
-    function hurtAnimStart(pos, iconId) {
-        var target = $(iconId),
-            delayTimer = null;
-
-        clearTimeout(delayTimer);
-
-        pos = STATSFOO.posConvert(pos);
-
-        $("#common-msg").fadeIn();
-        target.fadeIn().css({
-            "left": pos[0] - target.width() / 2,
-            "top": pos[1] - target.height()
-        });
-
-        delayTimer = setTimeout(function() {
-            target.fadeOut();
-            $("#common-msg").fadeOut();
-        }, 3000);
-    }
-    //球员替换
-    function playerReplaceStart() {
-        var delayTimer = null;
-
-        clearTimeout(delayTimer);
-        $("#event-replace").fadeIn();
-
-        delayTimer = setTimeout(function() {
-            $("#event-replace").fadeOut();
-        }, 3000);
-    }
-
-    $("#start").click(function() {
-        // ballShootAnim("player");
-        // ballShootAnim("flag");
-
-        // ballSpreadAnim(3, "#icon-position");
-        // ballSpreadAnim(4, "#icon-flag");
-
-        // ballScoreAnim();
-
-        // cardAnimStart();
-
-        // hurtAnimStart([80, 80], "#icon-hurt");
-
-        // playerReplaceStart();
-    });
-</script>
+<script type="text/javascript" src="./js/foo.js"></script>
 </html>
