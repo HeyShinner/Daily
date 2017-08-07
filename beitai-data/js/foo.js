@@ -34,33 +34,26 @@
 
                 // switch (data.MatchInfo.Status) {
                 //     case "赛前":
-                //         //更新赛前header样式 + 不开始动画
-                //         //upLiveNotStart(data.MatchInfo);
                 //         //textShowAnim("比赛未开始");
                 //         //STATSFOO.upLiveData();
                 //         // break;
                 //     case "赛中":
-                //         //更新赛中header样式 + 根据最新赛事时间类型调用动画函数
-                //         //upLiveMatchInfo(data.MatchInfo);
                 //         //chooseAnimFn(data);
                 //         //nextRid = data.EventList[0];
                 //         //STATSFOO.upLiveData(nextRid);
                 //         //break;
                 //     case "ended":
-                //         //更新赛后header样式 + 显示回放按钮（暂不显示）
-                //         //upLiveClosed(data.MatchInfo);
                 //         //textShowAnim("比赛结束");
                 //         //break;
                 // }
 
-                upLiveMatchInfo(data.MatchInfo);
                 chooseAnimFn(data);
                 STATSFOO.upLiveData(nextRid);
             }
         });
     }
 
-    //足球直播－－动画每10s更新
+    //足球直播－－动画每5s更新
     STATSFOO.upLiveData = function(nextRid) {
         STATSFOO.upLiveDataTimer = setInterval(function() {
             STATSFOO.getAJAXData(STATSFOO.API_LIVE + "?s=FbEvent&Mid=" + STATSFOO.Mid + "&Rid=" + nextRid, function(data) {
@@ -69,17 +62,11 @@
 
                     // switch (data.MatchInfo.Status) {
                     //     case "赛前":
-                    //         //更新赛前header样式 + 不开始动画
-                    //         //upLiveNotStart(data.MatchInfo);//赛前都一样，应该也不用更新吧？？？
                     //         // break;
                     //     case "赛中":
-                    //         //更新赛中header样式 + 根据最新赛事时间类型调用动画函数
-                    //         //upLiveMatchInfo(data.MatchInfo);
                     //         //chooseAnimFn(data);
                     //         //break;
                     //     case "ended":
-                    //         //更新赛后header样式 + 显示回放按钮（暂不显示）
-                    //         //upLiveClosed(data.MatchInfo);
                     //         //textShowAnim("比赛结束");
                     //         //STATSFOO.clearLiveEvent();按理应该清除更新事件定时器？？？
                     //         //break;
@@ -87,7 +74,6 @@
 
                     //test-data
                     // data = {"MatchInfo":{"Tournament":"\u4e2d\u8d85","Date":"2017-07-16","Time":"15:30:00","Hid":"34694","Hcn":"\u957f\u6625\u4e9a\u6cf0","Aid":"3375","Acn":"\u5e7f\u5dde\u5bcc\u529b","Hscore":"3","Ascore":"2","Status":"ended"},"EventList":["315397750","11","score_change",0,"3373","\u4e0a\u6d77\u7533\u82b1","18","58","2065","\u9a6c\u4e01\u65af, \u5965\u5df4\u8d39\u7c73","93202","\u83ab\u96f7\u8bfa, \u5409\u5965\u74e6\u5c3c"],"Result":true};
-                    upLiveMatchInfo(data.MatchInfo);
                     hideAllEle();
                     chooseAnimFn(data);
                 }
@@ -247,29 +233,7 @@
         }
     }
 
-    //更新头部比赛信息
-    function upLiveMatchInfo(matchInfo) {
-        //todo 赛前、赛中、赛后样式不同
-        $("#live-match-info").html('<div class="match-info-item match-info-team match-home">\
-                <img src="' + STATSFOO.TEAM_URL + matchInfo.Hid + '.png" alt="">\
-                <div class="team-name">' + matchInfo.Hcn + '</div>\
-            </div>\
-            <div class="match-info-item match-info-rate">\
-                <div class="rate-item rate-home">' + matchInfo.Hscore + '</div>\
-                <div class="rate-item rate-mid">:</div>\
-                <div class="rate-item rate-away">' + matchInfo.Ascore + '</div>\
-            </div>\
-            <div class="match-info-item match-info-team match-away">\
-                <div class="team-name">' + matchInfo.Acn + '</div>\
-                <img src="' + STATSFOO.TEAM_URL + matchInfo.Aid + '.png" alt="">\
-            </div>\
-            <div class="match-time" id="live-match-time">\
-                <div class="match-time-left">' + formatMatchTime(matchInfo.Time) + '</div>\
-                <div class="match-time-right">' + matchInfo.Status + '</div>\
-            </div>\
-        ');
-    }
-
+    //足球直播－－格式化比赛时间
     function formatMatchTime(str) {
         var newStr = str.split(":");
 
