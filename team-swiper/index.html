@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no" />
+    <title>球队页</title>
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <link rel="stylesheet" type="text/css" href="./css/team-swiper.css">
+    <script type="text/javascript">
+        // 设置(px:rem)单位换算：(10px:1rem)
+        document.documentElement.style.fontSize = (document.documentElement.clientWidth) / 75 + 'px';
+    </script>
+</head>
+
+<body>
+    <section class="m-team-intro"></section>
+
+    <nav class="m-tab-wrap">
+        <ul class="m-tab" id="m-tab">
+            <li class="m-tab-item active">资料</li>
+            <li class="m-tab-item">数据</li>
+            <li class="m-tab-item">赛程</li>
+            <li class="m-tab-item">球员</li>
+        </ul>
+
+        <section class="m-con-wrap">
+            <div class="m-con" id="m-con">
+                <div style="background-color: #c2d3da;" class="m-con-item active">资料</div>
+                <div style="background-color: #81a3a7;" class="m-con-item">数据</div>
+                <div style="background-color: #585a56;" class="m-con-item">赛程</div>
+                <div style="background-color: #f1f3f2;" class="m-con-item">球员</div>
+            </div>
+        </section>
+    </nav>
+    <!-- 不规则环形数据表 -->
+    <div class="chart-ring-wrap">
+        <div class="chart-ring">
+            <div class="ring-left" id="ring-left"></div>
+            <div class="ring-right" id="ring-right"></div>
+            <div class="ring-cover" id="ring-cover"></div>
+            <div class="ring-text">56</div>
+        </div>
+    </div>
+    <!-- 水波纹动画 -->
+    <div class="ripples-wrap">
+        <div class="common one"></div>
+        <div class="common two"></div>
+        <div class="common three"></div>
+        <div class="center"></div>
+    </div>
+    <!-- 菜单icon变化动画 -->
+    <div class="icon-menu-wrap" id="icon-menu-wrap">
+        <div class="line one"></div>
+        <div class="two">
+            <div class="common two-left"></div>
+            <div class="common two-right"></div>
+        </div>
+        <div class="line three"></div>
+    </div>
+
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript">
+        // 设置(px:rem)单位换算：(10px:1rem)
+        $(window).resize(function() {
+            document.documentElement.style.fontSize = (document.documentElement.clientWidth) / 75 + 'px';
+        });
+    </script>
+    <script type="text/javascript" src="./js/team-swiper.js"></script>
+</body>
+
+</html>

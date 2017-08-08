@@ -1,0 +1,237 @@
+.m-team-intro {
+    width: 100%;
+    height: 11.4rem;
+    background: #f2f2f2;
+}
+.m-tab {
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    background: #f2f2f2;
+    font-size: 0;
+}
+.m-tab .m-tab-item {
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid #118c8b;
+    border-left: none;
+    font-size: 2.4rem;
+    color: #000;
+    text-align: center;
+}
+.m-tab .m-tab-item:last-child {
+    border-right: none;
+}
+.m-tab .m-tab-item.active {
+    background-color: #118c8b;
+    color: #fff;
+}
+.m-con-wrap {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.m-con-wrap .m-con {
+    width: 400%;
+    font-size: 0;
+}
+.m-con-wrap .m-con .m-con-item {
+    display: inline-block;
+    width: 25%;
+    height: 50rem;
+    line-height: 50rem;
+    text-align: center;
+    font-size: 3.2rem;
+    color: #118c8b;
+}
+
+
+
+
+.chart-ring-wrap {
+    width: 16.4rem;
+    height: 12rem;
+    overflow: hidden;
+    position: relative;
+    margin: 2rem auto;
+}
+.chart-ring {
+    width: 16.4rem;
+    height: 16.4rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background-color: #797979;
+}
+.ring-left {
+    width: 16.4rem;
+    height: 16.4rem;
+    border-radius: 50%;
+    background-color: #fd8049;
+    clip: rect(0, 8.2rem, 16.4rem, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ring-right {
+    width: 16.4rem;
+    height: 16.4rem;
+    border-radius: 50%;
+    background-color: #fd8049;
+    clip: rect(0, 16.4rem, 16.4rem, 8.2rem);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ring-cover {
+    width: 16.4rem;
+    height: 16.4rem;
+    border-radius: 50%;
+    background-color: #797979;
+    clip: rect(0, 16.4rem, 16.4rem, 8.2rem);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ring-text {
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    width: 12.4rem;
+    height: 12.4rem;
+    line-height: 12.4rem;
+    margin: 2rem auto;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 3.6rem;
+    background-color: #fff;
+    color: #000;
+}
+
+
+
+.ripples-wrap {
+    width: 16rem;
+    height: 16rem;
+    margin: 10rem auto;
+    position: relative;
+}
+.ripples-wrap .common {
+    width: 8rem;
+    height: 8rem;
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+    border-radius: 50%;
+    border: 2px solid #118c8b;
+}
+.ripples-wrap .center {
+    width: 8rem;
+    height: 8rem;
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+    background-color: #118c8b;
+    border-radius: 50%;
+    animation: centerAnim 1200ms linear infinite;
+}
+@keyframes centerAnim {
+    0% {
+        transform: scale(1);
+    }
+    80% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.ripples-wrap .one {
+    animation: oneAnim 3600ms linear infinite 600ms;
+}
+@keyframes oneAnim {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+.ripples-wrap .two {
+    animation: twoAnim 3600ms linear infinite 1800ms;
+}
+@keyframes twoAnim {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+.ripples-wrap .three {
+    animation: threeAnim 3600ms linear infinite 3000ms;
+}
+@keyframes threeAnim {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+
+
+.icon-menu-wrap {
+    width: 10rem;
+    height: auto;
+    margin: 10rem auto;
+}
+.icon-menu-wrap .line {
+    width: 80%;
+    height: 1rem;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+    background-color: #118c8b;
+
+    transition: opacity 300ms linear;
+}
+.icon-menu-wrap .two {
+    width: 80%;
+    height: 1rem;
+    margin: 1rem auto;
+    position: relative;
+}
+.icon-menu-wrap .two .common {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    border-radius: 0.5rem;
+    background-color: #118c8b;
+}
+.icon-menu-wrap .two .two-left {
+    transition: transform 300ms linear;
+}
+.icon-menu-wrap .two .two-right {
+    transition: transform 300ms linear;
+}
+.icon-menu-wrap.active .line {
+    opacity: 0;
+}
+.icon-menu-wrap.active .two .two-left {
+    transform: rotate(45deg);
+}
+.icon-menu-wrap.active .two .two-right {
+    transform: rotate(-45deg);
+}
