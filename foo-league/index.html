@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>足球联赛选择</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/foo-league.css">
+    <style>
+        .m-list-wrap {
+            width: 100vw;
+            padding: 3rem 0;
+            font-size: 3.2rem;
+        }
+    </style>
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 75 + 'px';
+    </script>
+</head>
+<body>
+    <section class="m-list-wrap">
+        <div id="m-list-link">点击唤出面板&gt;</div>
+    </section>
+
+    <section class="m-league-wrap" id="m-league-wrap">
+        <div class="m-league" id="m-league">
+            <header class="m-league-back">
+                <em class="header-btn-back" id="header-btn-back"></em>
+            </header>
+
+            <section class="m-league-focus clearfix">
+                <div class="focus-title clearfix">
+                    <h4>我的赛事</h4>
+                    <p>点击进入赛事</p>
+                    <button class="focus-btn-edit is-edit" id="focus-btn-edit">编辑</button>
+                </div>
+
+                <div class="focus-list-wrap sign-in" id="focus-list-wrap">
+                    <ul class="focus-list" id="focus-list">
+                        <!-- <li>
+                            <div data-id="" data-upper="A" class="list-item">中超A</div>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <p class="focus-edit-tip" id="focus-edit-tip">长按拖动调整顺序</p>
+            </section>
+
+            <section class="m-league-total">
+                <div class="total-title">
+                    <h4>全部赛事</h4>
+                    <p>点击添加赛事</p>
+                </div>
+
+                <div class="total-list-wrap" id="total-list-wrap">
+                    <!-- <div data-upper="A" class="total-list">
+                        <h5>A</h5>
+                        <ol>
+                            <li data-id="" data-upper="A" class="t-l-item">罗超杯-A</li>
+                            <li data-id="" data-upper="A" class="t-l-item">意甲-A</li>
+                            <li data-id="" data-upper="A" class="t-l-item">法甲-A</li>
+                        </ol>
+                    </div> -->
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <div class="m-upper-wrap" id="m-upper-wrap">
+        <ul class="m-upper" id="m-upper">
+            <!-- <li data-upper="A" class="i-item"><a href="javascript:;">A</a></li> -->
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script>
+    $(window).resize(function() {
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 75 + 'px';
+    });
+</script>
+<script type="text/javascript" src="./js/foo-league.js"></script>
+</html>
