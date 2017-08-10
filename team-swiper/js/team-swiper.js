@@ -101,4 +101,58 @@
     $("#icon-menu-wrap").click(function() {
         $(this).toggleClass("active");
     });
+
+
+
+    //顶部下拉刷新、底部下拉加载
+    $(window).scroll(function() {
+        initAnim();
+    });
+    function initAnim() {
+        var scrollTop = document.body.scrollTop,
+            startX = null,
+            startY = null,
+            endX = null,
+            endY = null,
+            loadingFlag = $(document).height() - $(window).height();
+
+        if (scrollTop === 0) {
+            document.addEventListener("touchstart", function(e) {
+                startX = e.touches[0].pageX;
+                startY = e.touches[0].pageY;
+            });
+            document.addEventListener("touchmove", function(e) {
+                endX = e.touches[0].pageX;
+                endY = e.touches[0].pageY;
+            });
+            document.addEventListener("touchend", function(e) {
+                var y = endY - startY;
+                if (y > 80) {
+                    handleRefresh();
+                }
+            });
+        } else if (scrollTop === loadingFlag) {
+            document.addEventListener("touchstart", function(e) {
+                startX = e.touches[0].pageX;
+                startY = e.touches[0].pageY;
+            });
+            document.addEventListener("touchmove", function(e) {
+                endX = e.touches[0].pageX;
+                endY = e.touches[0].pageY;
+            });
+            document.addEventListener("touchend", function(e) {
+                var y = endY - startY;
+                if (y < -80) {
+                    handleLoding();
+                }
+            });
+        }
+    }
+    function handleRefresh() {
+        $("#anim-refresh").show();
+    }
+    function handleLoding() {
+        $("#anim-loading").show();
+    }
+    initAnim();
 })();
