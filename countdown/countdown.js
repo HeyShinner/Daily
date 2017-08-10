@@ -5,7 +5,7 @@
         windowWidth = 1260,
         windowHeight = 550,
         radius = 8,
-        endTime = new Date(2017, 1, 9, 11, 0, 0),
+        endTime = new Date(2017, 7, 10, 11, 0, 0),
         curShowSeconds = 0,
         balls = [],
         colors = ["#33B5E5", "#0099CC", "#AA66CC", "#9933CC", "#99CC00", "#669900", "#FFBB33", "#FF8800", "#FF4444", "#CC0000", "#CCFF00", "#AACC66"];
