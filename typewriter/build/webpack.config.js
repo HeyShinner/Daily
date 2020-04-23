@@ -31,7 +31,7 @@ module.exports = {
           'sass-loader'
         ],
         exclude: /node_modules/
-     }    
+      }
     ],
   },
   plugins: [
